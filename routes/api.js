@@ -1,6 +1,38 @@
 const router = require('express').Router();
 
+// const fs = require('fs');
+
 const save = require('../save');
+
+// const uuid = require("uuid").v4;
+
+
+// router.get('/api/notes', (req, res) => {
+//     res.json(db);
+// })
+// router.post('api/notes', (req, res) => {
+//     const noteElement = createNote(req.body, db);
+//     res.json(noteElement)
+// })
+// function createNote(body, event) {
+//     const noteElement = {
+//         id: uuid(),
+//         title: body.title,
+//         text: body.text,
+//     };
+
+//     let noteArray = event || [];
+//     noteArray.push(noteElement);
+
+//     fs.writeFileSync(
+//         path.join(__dirname, './db/db.json'),
+//         JSON.stringify(noteArray)
+//     );
+//     return noteElement;
+// }
+
+
+
 
 router.get('/notes', (req, res) => {
     save
