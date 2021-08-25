@@ -25,15 +25,15 @@ app.get('/api/notes', (req, res) => {
     res.json(db.slice(1));
 })
 app.post('/api/notes', (req, res) => {
-    const noteEl = JSON.parse(fs.readFileSync('./db/db.json'))
+    const note = JSON.parse(fs.readFileSync('./db/db.json'))
     const add = req.body
 
     add.id = uuidv4()
-    noteEl.push(add)
+    note.push(add)
 
-    fs.writeFileSync('./db/db.json', JSON.stringify(noteEl))
+    fs.writeFileSync('./db/db.json', JSON.stringify(note))
 
-    res.json(noteEl);
+    res.json(note);
 
     res.json(db);
 })
