@@ -19,31 +19,24 @@ app.get('/notes', (req, res) => {
 
 
 app.get('/api/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'))
+    res.sendFile(path.join(__dirname, '/db/db.json'))
 })
 app.get('/api/notes', (req, res) => {
     res.json(db.slice(1));
 })
 app.post('/api/notes', (req, res) => {
-    const noteEl = newNote(req.body, db);
+    const noteEl = JSON.parse(fs.readFileSync('./db/db.json'))
+    const add = req.body
+
+    add.id = uuidv4()
+    noteEl.push(add)
+
+    fs.writeFileSync('./db/db.json', JSON.stringify(noteEl))
+
     res.json(noteEl);
+
+    res.json(db);
 })
-
-
-
-function newNote(body, arr) {
-    const noteElement = {
-        id: uuidv4(),
-        title: body.title,
-        text: body.text,
-    };
-
-    let noteArray = arr || [];
-    noteArray.push(noteElement);
-
-    fs.writeFileSync( path.join(__dirname, './db/db.json'), JSON.stringify(noteArray));
-    return noteElement;
-}
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
