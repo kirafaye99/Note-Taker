@@ -12,12 +12,12 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(express.static("public"));
 
-
+//go to notes.html
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 })
 
-
+//show note
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/db/db.json'))
 })
@@ -38,7 +38,23 @@ app.post('/api/notes', (req, res) => {
     res.json(db);
 })
 
-app.get('/*', (req, res) => {
+//delete note
+app.delete('/api/notes/:id', (req, res) => {
+    delNote(req.params.id, db)
+    res.json(true);
+});
+function delNote(id, arr) {
+    for(let i = 0; i < arr.length; i++) {
+        let button = arr[i];
+
+        if(button.id == id) {
+            arr.splice(i, 1);
+            fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(arr));
+        }
+    }
+};
+
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
 })
 
