@@ -20,8 +20,6 @@ When you get to the home page, click "get started" then type in your note title 
 github.com/kirafaye99
 ## License
 Open License
-## Tests
-n/a
 ## Questions
 #### [My Github](https://github.com/kirafaye99)
 #### Email: 
