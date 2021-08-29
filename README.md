@@ -10,7 +10,6 @@ This application utilizes Express.js, Javascript, HTML, and CSS to build a platf
 - [Usage](#usage)
 - [Credit](#credit)
 - [License](#license)
-- [Tests](#tests)
 - [Questions](#questions)
 ## Installation
 `npm install` in the integrated terminal
